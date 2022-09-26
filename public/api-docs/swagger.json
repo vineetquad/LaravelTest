@@ -1,0 +1,156 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "\n\nHeader -> api_key : 9b932bc6i-bcf0n-4f54t-8e45e-15045dd8155all \n\n",
+    "version": "1.0.0",
+    "title": "Modality App"
+  },
+  "host": "3.145.6.43",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "User",
+      "description": "All User Operations"
+    }
+    ,
+    {
+      "name": "User-home",
+      "description": "All User Home Data"
+    }
+    ,
+    {
+      "name": "Service-Provider-home",
+      "description": "All Service Provider Home Data"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User Login",
+        "operationId": "login",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Enter Email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }  ,
+          {
+            "name": "device_type",
+            "in": "formData",
+            "description": "Enter device_type",
+            "required": true,
+            "type": "string"
+          }
+          ,
+          {
+            "name": "device_token",
+            "in": "formData",
+            "description": "Enter device_token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    },
+   
+    
+    "/getBookingHistory": {
+      "post": {
+        "tags": [
+          "Service-Provider-home"
+        ],
+        "summary": "Schedule of users",
+        "operationId": "getBookingHistory",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer token",
+            "required": true,
+            "type": "string"
+          }
+        
+          ,
+          {
+            "name": "limit",
+            "in": "formData",
+            "description": "Enter Page data limit default(8)",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageNo",
+            "in": "formData",
+            "description": "Enter pageNo (deafult 0)",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "api-key"
+    }
+  },
+  "definitions": {
+    "changePassword": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "number"
+        },
+        "oldpassword": {
+          "type": "string"
+        },
+        "newpassword": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "schemes": [
+    "http"
+  ]
+}
