@@ -6,7 +6,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\GoutteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PusherNotificationController;
-
+use App\Http\Controllers\WebNotificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,3 +36,9 @@ Route::get('sendNotification',[PusherNotificationController::class, 'sendNotific
 //     $details['email'] = 'vineet.quadtrics@gmail.com';
 //     dispatch(new QueueJob());
 // });
+
+Auth::routes();
+Route::get('/push-notificaiton', [WebNotificationController::class, 'index'])->name('push-notificaiton');
+Route::post('/store-token', [WebNotificationController::class, 'storeToken'])->name('store.token');
+Route::post('/send-web-notification', [WebNotificationController::class, 'sendWebNotification'])->name('send.web-notification');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

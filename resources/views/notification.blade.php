@@ -9,7 +9,7 @@
       cluster: 'ap2'
     });
 
-    var channel = pusher.subscribe('PrivateChannel');
+    var channel = pusher.subscribe('PrivateChannel1');
     console.log(channel);
     channel.bind('Notify', function(data) {
       alert(JSON.stringify(data));
